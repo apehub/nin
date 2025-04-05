@@ -1,0 +1,21 @@
+[project]
+# 项目名称
+name = "myproject"
+# 项目版本号 
+version = "1.0.0" 
+# 项目描述
+description = "This is a project"
+# 项目作者 
+author = "John Doe"
+# 项目许可证 
+license = "MIT" 
+
+# 项目依赖
+[dependencies] 
+# 依赖包名称版/本号/SCOPE 等
+"name" = ">=1.0.0"
+"test-lib" = "1.0.0@test"
+
+# 自定义仓库列表
+[repositories]
+"github" = "https://github.com"

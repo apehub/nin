@@ -1,0 +1,56 @@
+# About
+这是一个使用 `zig` 语言开发的 `通用构建工具` 项目。
+可以在 `windows` 和 `linux` 平台上使用，也可以在 `macos` 平台上使用。
+其用途类似于 `maven` 或者 `gradle` 等构建工具。
+
+# 主程序
+该工具主程序叫 `nin`，是一个命令行程序, 可以在 `windows`, `linux` 和 `macos` 平台上使用。
+
+`nin` 命令包含以下子命令:
+- `new` : 创建一个新的项目
+- `init` : 将当前目录初始化为一个`nin` 项目
+- `build` : 编译当前项目
+- `release` : 编译当前项目并生成可执行文件
+- `upload` : 上传构建产物到`nin`仓库中
+- `update` : 更新当前项目的依赖
+- `clean` : 清理当前项目的构建产物
+- `test` : 测试当前项目的功能
+- `help` : 显示帮助信息
+
+# 配置文件
+## 全局配置文件
+`nin` 工具的全局配置文件位于用户的主目录下, 其名称为 `settings.toml`。
+该文件的内容大致如下:
+```toml
+# 默认仓库列表
+[repositories]
+"repo"=""
+```
+
+## 项目配置文件
+和`maven` 等构建工具类似, `nin` 也需要一个配置文件来描述项目的信息。
+该配置文件的名称为 `nin.toml`，位于项目的根目录下。
+项目配置文件的内容大致如下:
+```toml
+[project]
+# 项目名称
+name = "myproject"
+# 项目版本号 
+version = "1.0.0" 
+# 项目描述
+description = "This is a project"
+# 项目作者 
+author = "John Doe"
+# 项目许可证 
+license = "MIT" 
+
+# 项目依赖
+[dependencies] 
+# 依赖包名称版/本号/SCOPE 等
+"name" = ">=1.0.0"
+"test-lib" = "1.0.0@test"
+
+# 自定义仓库列表
+[repositories]
+"github" = "https://github.com"
+```
