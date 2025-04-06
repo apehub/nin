@@ -1,19 +1,25 @@
 const std = @import("std");
-const CommandInterface = @import("cmd/command_interface.zig");
+const Command = @import("command.zig");
+const Context = @import("context.zig");
 
-pub fn main() !void {
+const usage = "Usage: nin <command> [options] [args]";
+
+pub fn main() anyerror!void {
     var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
     defer arena.deinit();
     const allocator = arena.allocator();
+    var context = Context.create(allocator) catch |err| {
+        // 处理错误
+        std.log.err("Failed to create context: {}", .{err});
+        return err;
+    };
+    defer context.destroy();
 
-    const args = try std.process.argsAlloc(allocator);
-    if (args.len < 2) {
-        std.log.err("Please provide a subcommand.", .{});
+    if (context.args.len < 2) {
+        // print usage message to stdout
+        try context.write("{s}\n", .{usage});
         return;
     }
-
-    const sub_command = args[1];
-    const command = CommandInterface.getCommand(sub_command);
-    try command.execute(allocator, args[2..]);
+    context.debug();
     return;
 }
