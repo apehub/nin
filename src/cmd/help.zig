@@ -1,13 +1,13 @@
 const std = @import("std");
-const Context = @import("../context.zig");
+const Runtime = @import("../runtime.zig");
 
 /// Execute the 'help' command.
 ///
-/// @param context The context passed to the 'help' command.
+/// @param runtime The context passed to the 'help' command.
 /// @param args The command line arguments passed to the 'help' command.
 /// @return This function does not return a value, but may return an error.
-pub fn execute(context: Context) anyerror!void {
-    _ = context;
+pub fn execute(runtime: Runtime) anyerror!void {
+    _ = runtime;
     std.log.info("Display help information.", .{});
 }
 

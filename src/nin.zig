@@ -8,7 +8,7 @@ pub fn main() anyerror!void {
     var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
     defer arena.deinit();
     const allocator = arena.allocator();
-    var context = Context.create(allocator) catch |err| {
+    var context = Context.init(allocator) catch |err| {
         // 处理错误
         std.log.err("Failed to create context: {}", .{err});
         return err;
